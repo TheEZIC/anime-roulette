@@ -1,29 +1,11 @@
-import style from "./style/home.module.css";
+import { Main } from 'components/Main/Main';
 
-import logo from "assets/logo.svg";
-
-import { Heading, Text } from '@chakra-ui/react'
+import "./Home.scss";
 
 const HomePage = () => {
-    return(
-        <div className={style.container}>
-            <img
-                src={logo}
-                alt={"react-logo"}
-                className={style.logo}
-            />
-            <Heading>Welcome to react-archi</Heading>
-            <Text fontSize='4xl'>A Typescript + ChakraUI template</Text>
-            <a
-                href="https://github.com/protoxvga/react-clean-architecture"
-                target="_blank"
-                rel="noreferrer"
-                className={style.link}
-            >
-                Documentation
-            </a>
-        </div>
-    );
+  return(
+    <Main/>
+  );
 }
 
 export default HomePage;

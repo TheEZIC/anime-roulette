@@ -4,6 +4,7 @@
       "outDir": "lib/esm",
       "module": "esnext",
       "target": "es5",
+      "experimentalDecorators": true,
       "lib": [
         "es6",
         "dom",
@@ -13,14 +14,12 @@
       "jsx": "react-jsx",
       "declaration": true,
       "moduleResolution": "node",
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
       "esModuleInterop": true,
       "noImplicitReturns": true,
       "noImplicitThis": true,
       "noImplicitAny": true,
       "strictNullChecks": true,
-      "strict": true,
+      // "strict": true,
       "suppressImplicitAnyIndexErrors": true,
       "allowSyntheticDefaultImports": true,
       "allowJs": true,
@@ -29,7 +28,15 @@
       "noFallthroughCasesInSwitch": true,
       "resolveJsonModule": true,
       "isolatedModules": true,
-      "noEmit": true
+      "noEmit": true,
+      "paths": {
+        "@assets": ["./src/assets"],
+        "@components": ["./src/components"],
+        "@api": ["./src/shikimoriApi"],
+        "@stores": ["./src/stores"],
+        "@hooks": ["./src/hooks"],
+        "@utils": ["./src/utils"]
+      }
     },
     "include": [
       "src"
@@ -39,4 +46,3 @@
       "lib"
     ]
   }
-  
