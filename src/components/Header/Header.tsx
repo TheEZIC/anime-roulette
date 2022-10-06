@@ -13,7 +13,7 @@ export const Header = () => {
       borderBottomColor={colorMode === "light" ? "blackAlpha.300" : "gray.700"}
     >
       <Container className="container header__content" maxW="6xl">
-        <Text fontSize="1.5em">Карусель (название временное)</Text>
+        <Text className="header__title" fontSize="1.5em">Карусель (название временное)</Text>
         <ThemeToggle/>
       </Container>
     </Container>

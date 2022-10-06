@@ -5,6 +5,7 @@ import ControlGroup from "../ControlGroup/ControlGroup";
 import {useRef} from "react";
 import {rouletteStore} from "../../stores/RouletteStore";
 import {observer} from "mobx-react";
+import {rouletteTitlesStore} from "../../stores/RouletteTitlesStore";
 
 export const Main = observer(() => {
   const spinRef = useRef<any>(null);
@@ -19,7 +20,7 @@ export const Main = observer(() => {
               spinRef.current = spin;
             }}
           />
-          <Button onClick={() => spinRef?.current()}>Спин</Button>
+          {rouletteTitlesStore.titles.length && <Button onClick={() => spinRef?.current()}>Спин</Button>}
           {rouletteStore.winner && <span>{rouletteStore.winner.item.russian}</span>}
         </VStack>
       </SimpleGrid>

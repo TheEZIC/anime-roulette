@@ -1,6 +1,10 @@
 .header {
   border-bottom: 1px solid;
-  padding: 10px 0px;
+  padding: 10px 0px !important;
+
+  &__title {
+    font-weight: bold;
+  }
 
   &__content {
     display: flex;

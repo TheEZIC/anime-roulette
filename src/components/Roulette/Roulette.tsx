@@ -109,7 +109,7 @@ export const Roulette: FC<IProps> = observer((props) => {
 
     let entries = rouletteTitlesStore.titles;
 
-    const RADIUS = Math.min(canvas.height, canvas.width) /** ROULETTE_SCALE / 2*/;
+    const RADIUS = canvas.width / 2;
     const center = [canvas.width / 2, canvas.height / 2];
 
     const totalWeight = entries.reduce((a, b) => a + b.weight, 0);
@@ -175,7 +175,7 @@ export const Roulette: FC<IProps> = observer((props) => {
     const { canvas } = getCanvas();
     let rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;
-    canvas.height = rect.height;
+    canvas.height = rect.width;
   };
 
   useEffect(() => {
