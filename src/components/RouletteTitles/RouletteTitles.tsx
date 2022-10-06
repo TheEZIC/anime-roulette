@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, ButtonGroup, Heading, Icon, VStack} from "@chakra-ui/react";
-import {IRouletteTitle, rouletteTitlesStore} from "../../stores/RouletteTitlesStore";
+import {VStack} from "@chakra-ui/react";
+import {rouletteTitlesStore} from "../../stores/RouletteTitlesStore";
 import {MangaItem} from "../MangaItem/MangaItem";
 import {observer} from "mobx-react";
 

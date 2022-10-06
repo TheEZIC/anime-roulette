@@ -22,7 +22,7 @@ export const SearchList: FC = observer(() => {
       return renderLoading();
     }
 
-    const existedIds = rouletteTitlesStore.titles.map(t => t.item.id);
+    //const existedIds = rouletteTitlesStore.titles.map(t => t.item.id);
     const items = (searchListStore.result ?? [])
       .filter((item) => !rouletteTitlesStore.checkTitle(item));
 

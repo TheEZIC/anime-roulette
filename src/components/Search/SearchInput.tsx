@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {observer} from "mobx-react";
 import {Box, Input, useColorModeValue} from "@chakra-ui/react";
 import {searchListStore} from "../../stores/SearchListStore";
@@ -13,7 +13,7 @@ export const SearchInput = observer(() => {
     searchListStore.request(input.value);
   }, 550);
 
-  useEffect(() => onChange(), [input.value]);
+  useEffect(() => onChange(), [input.value, onChange]);
 
   return (
     <Box bg={inputBGColor} className="search-box">
