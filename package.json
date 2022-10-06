@@ -2,6 +2,7 @@
   "name": "anime-roulette",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
   "dependencies": {
     "@chakra-ui/react": "^1.8.8",
     "@emotion/react": "^11.10.0",
