@@ -2,6 +2,7 @@ import {action, computed, makeObservable, observable, reaction} from "mobx";
 import APIStore from "./abstracts/APIStore";
 import ShikimoriApi from "../shikimoriApi/ShikimoriApi";
 import { IShikimoriTitleResponse } from "shikimoriApi/ShikimoriTypes";
+import {persist} from "mobx-persist";
 
 export enum TitleType {
   Anime = "Anime",
@@ -90,6 +91,7 @@ class SearchListStore extends APIStore<IShikimoriTitleResponse[]> {
   }
 
   @observable
+  @persist("object")
   private _nsfw: boolean = false;
 
   @computed

@@ -1,5 +1,6 @@
 import {action, computed, makeObservable, observable} from "mobx";
 import {IShikimoriTitleResponse} from "../shikimoriApi/ShikimoriTypes";
+import {persist} from "mobx-persist";
 
 export interface IRouletteTitle {
   item: IShikimoriTitleResponse;
@@ -12,6 +13,7 @@ class RouletteTitlesStore {
   }
 
   @observable
+  @persist("list")
   private _titles: IRouletteTitle[] = [];
 
   @computed
