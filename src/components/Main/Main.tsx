@@ -10,6 +10,24 @@ import {rouletteTitlesStore} from "../../stores/RouletteTitlesStore";
 export const Main = observer(() => {
   const spinRef = useRef<any>(null);
 
+  const renderWinner = (): React.ReactNode | null => {
+    if (!rouletteStore.winner) {
+      return null;
+    }
+
+    const {item} = rouletteStore.winner;
+
+    return (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={"https://shikimori.one/" + item.url}
+      >
+        <b>{item.russian}</b>
+      </a>
+    );
+  }
+
   return (
     <Page>
       <SimpleGrid columns={[null, null, 1, 2]} spacing={20}>
@@ -21,7 +39,7 @@ export const Main = observer(() => {
             }}
           />
           {rouletteTitlesStore.titles.length && <Button onClick={() => spinRef?.current()}>Спин</Button>}
-          {rouletteStore.winner && <span>{rouletteStore.winner.item.russian}</span>}
+          {renderWinner()}
         </VStack>
       </SimpleGrid>
     </Page>
