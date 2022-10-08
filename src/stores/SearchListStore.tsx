@@ -8,15 +8,20 @@ export enum TitleType {
   Manga = "Manga",
 }
 
-type SearchFunction = (search: string) => Promise<IShikimoriTitleResponse[]>;
+type SearchFunction = (search: string, censored: boolean) => Promise<IShikimoriTitleResponse[]>;
 
 class SearchListStore extends APIStore<IShikimoriTitleResponse[]> {
   constructor() {
     super();
 
     makeObservable(this);
+
     reaction(() => this.types, () => {
-      this.request(this.search);
+      this.request();
+    });
+
+    reaction(() => this.nsfw, () => {
+      this.request();
     });
   }
 
@@ -71,7 +76,7 @@ class SearchListStore extends APIStore<IShikimoriTitleResponse[]> {
   private _search: string = "";
 
   @computed
-  private get search(): string {
+  public get search(): string {
     return this._search;
   }
 
@@ -79,21 +84,42 @@ class SearchListStore extends APIStore<IShikimoriTitleResponse[]> {
     this._search = value;
   }
 
-  public async request(search: string): Promise<void> {
-    if (!search) {
+  @action
+  public changeSearch(search: string) {
+    this._search = search
+  }
+
+  @observable
+  private _nsfw: boolean = false;
+
+  @computed
+  public get nsfw(): boolean {
+    return this._nsfw;
+  }
+
+  private set nsfw(value: boolean) {
+    this._nsfw = value;
+  }
+
+  @action
+  public toggleNsfw() {
+    this._nsfw = !this._nsfw;
+  }
+
+  public async request(): Promise<void> {
+    if (!this.search) {
       return;
     }
 
-    console.log(search, "request new title")
+    console.log(this.search, "request new title")
 
     this.onStart();
-    this.search = search;
 
     try {
       const titles: IShikimoriTitleResponse[] = [];
 
       for (let fun of this.requests) {
-        const response = await fun(search);
+        const response = await fun(this.search, !this.nsfw);
         titles.push(...response);
       }
 

@@ -11,23 +11,31 @@ export default class ShikimoriApi {
     baseURL: "https://shikimori.one/api"
   });
 
-  public static async fetchAnime(search: string): Promise<IShikimoriAnimesResponse[]> {
-    const query = objectToQuery({ search, limit: "50" });
+  public static async fetchAnime(search: string, censored: boolean): Promise<IShikimoriAnimesResponse[]> {
+    const query = ShikimoriApi.getResponseQuery(search, censored);
     const { data } = await ShikimoriApi.API.get(`/animes?${query}`);
 
     return data;
   }
 
-  public static async fetchManga(search: string): Promise<IShikimoriMangasResponse[]> {
-    const query = objectToQuery({ search, limit: "50" });
+  public static async fetchManga(search: string, censored: boolean): Promise<IShikimoriMangasResponse[]> {
+    const query = ShikimoriApi.getResponseQuery(search, censored);
     const { data } = await ShikimoriApi.API.get(`/mangas?${query}`);
 
     return data;
   }
 
-  public static async fetchAll(search: string): Promise<IShikimoriTitleResponse[]> {
-    const mangas = await this.fetchManga(search);
-    const animes = await this.fetchAnime(search);
+  private static getResponseQuery(search: string, censored: boolean) {
+    return objectToQuery({
+      search,
+      limit: "50",
+      censored: JSON.stringify(censored),
+    });
+  }
+
+  public static async fetchAll(search: string, censored: boolean): Promise<IShikimoriTitleResponse[]> {
+    const mangas = await this.fetchManga(search, censored);
+    const animes = await this.fetchAnime(search, censored);
 
     return [ ...mangas, ...animes ] as IShikimoriTitleResponse[];
   }
