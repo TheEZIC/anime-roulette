@@ -69,9 +69,7 @@ export const Roulette: FC<IProps> = observer((props) => {
 
   const getCurrentEntry = () => {
     let entries = rouletteTitlesStore.titles;
-
     let angle = 0;
-
     let totalWeight = entries.reduce((a, b) => a + b.weight, 0);
 
     for (let i = 0; i < entries.length; i++) {

@@ -1,6 +1,7 @@
 import {IRouletteTitle, rouletteTitlesStore} from "./RouletteTitlesStore";
 import {Undefinable} from "../utils/Undefinable";
 import {action, computed, makeObservable, observable, reaction} from "mobx";
+import {persist} from "mobx-persist";
 
 class RouletteStore {
   constructor() {
@@ -9,6 +10,19 @@ class RouletteStore {
     reaction(() => rouletteTitlesStore.titles, () => {
       this.cleanWinner();
     });
+  }
+
+  @persist("object")
+  @observable
+  private _timer: number = 30;
+
+  @computed
+  public get timer(): number {
+    return this._timer;
+  }
+
+  public set timer(value: number) {
+    this._timer = value;
   }
 
   @observable
