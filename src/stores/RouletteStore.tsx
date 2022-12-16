@@ -3,6 +3,11 @@ import {Undefinable} from "../utils/Undefinable";
 import {action, computed, makeObservable, observable, reaction} from "mobx";
 import {persist} from "mobx-persist";
 
+//@ts-ignore
+export const rouleteStoreInitialState = {
+  "_timer": 10,
+}
+
 class RouletteStore {
   constructor() {
     makeObservable(this);
@@ -12,9 +17,9 @@ class RouletteStore {
     });
   }
 
-  @persist("object")
   @observable
-  private _timer: number = 30;
+  @persist("object")
+  private _timer: number;
 
   @computed
   public get timer(): number {

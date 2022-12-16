@@ -8,6 +8,7 @@ import "./index.scss";
 import {create} from "mobx-persist";
 import {searchListStore} from "./stores/SearchListStore";
 import {rouletteTitlesStore} from "./stores/RouletteTitlesStore";
+import {rouleteStoreInitialState, rouletteStore} from "./stores/RouletteStore";
 
 const hydrate = create({
   storage: localForage,
@@ -18,6 +19,7 @@ const renderApp = () => {
   Promise.all([
     hydrate("searchList", searchListStore),
     hydrate("rouletteTitles", rouletteTitlesStore),
+    hydrate("roulette", rouletteStore, rouleteStoreInitialState),
   ]).then(() => {
     root.render(
       <>

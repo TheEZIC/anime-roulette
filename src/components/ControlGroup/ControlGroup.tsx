@@ -26,6 +26,7 @@ const ControlGroup = observer(() => {
 
   const onTimerChange = (value: string) => {
     let v = Number(value);
+    console.log(v);
     rouletteStore.timer = v;
   }
 
@@ -45,7 +46,7 @@ const ControlGroup = observer(() => {
             step={5}
             min={5}
             placeholder={"Время кручения"}
-            defaultValue={rouletteStore.timer}
+            value={rouletteStore.timer}
             onChange={(e) => onTimerChange(e)}
           >
             <NumberInputField/>
